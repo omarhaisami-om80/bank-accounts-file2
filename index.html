@@ -6,13 +6,13 @@
     <title>الحسابات البنكية | شركة عالم الفائدة الحديثة للخردوات المحدودة</title>
     <!-- خط تجوال من جوجل لقراءة مريحة -->
     <link href="https://googleapis.com" rel="stylesheet">
-    <!-- أيقونات FontAwesome للأزرار والجماليات -->
+    <!-- مكتبة الأيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
         :root {
             --primary-color: #0f172a;
-            --accent-color: #2563eb;
+            --accent-color: #0284c7;
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
             --text-color: #334155;
@@ -28,7 +28,7 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding: 20px;
+            padding: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,36 +37,52 @@
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             background: var(--card-bg);
             border-radius: 24px;
-            padding: 30px 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            padding: 24px 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
 
         .header {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        .company-logo {
-            font-size: 50px;
-            color: #1e3a8a;
-            margin-bottom: 12px;
+        /* حاوية شعار الشركة الفعلي */
+        .company-logo-box {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 12px auto;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .company-logo-box img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
         }
 
         .header h1 {
-            font-size: 20px;
+            font-size: 17px;
             color: var(--primary-color);
             margin-bottom: 6px;
             line-height: 1.4;
+            font-weight: 700;
         }
 
         .header p {
-            font-size: 13px;
-            color: #64748b;
-            font-weight: 500;
-            background: #e2e8f0;
+            font-size: 12px;
+            color: #0284c7;
+            font-weight: 700;
+            background: #e0f2fe;
             display: inline-block;
             padding: 4px 16px;
             border-radius: 50px;
@@ -75,17 +91,11 @@
         .bank-card {
             background: #ffffff;
             border-radius: 16px;
-            padding: 20px;
+            padding: 16px;
             margin-bottom: 16px;
             text-align: right;
             border: 1px solid #f1f5f9;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
-            transition: all 0.2s ease;
-        }
-
-        .bank-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
 
         .bank-info {
@@ -94,7 +104,7 @@
             margin-bottom: 12px;
         }
 
-        /* ألوان مخصصة لكل بنك لتبدو الواجهة احترافية */
+        /* ألوان الهوية الجانبية للبنوك */
         .snb { border-right: 5px solid #005a36; }
         .alrajhi { border-right: 5px solid #0054a6; }
         .albilad { border-right: 5px solid #b87b14; }
@@ -103,15 +113,12 @@
         .bank-logo-img {
             width: 32px;
             height: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-left: 12px;
-            font-size: 20px;
+            margin-left: 10px;
+            object-fit: contain;
         }
 
         .bank-name {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--primary-color);
         }
@@ -123,43 +130,49 @@
             display: block;
         }
 
+        /* تعديل الحاوية لفرد رقم الآيبان بالكامل بعرض الشاشة */
         .account-box {
             display: flex;
             background: #f8fafc;
             border-radius: 12px;
-            padding: 10px 12px;
+            padding: 12px;
             align-items: center;
             justify-content: space-between;
             border: 1px solid #e2e8f0;
-            direction: ltr; /* لعرض رقم الآيبان بشكل صحيح من اليسار لليمين */
+            direction: ltr; 
+            gap: 8px;
         }
 
+        /* تصغير الفونت قليلاً لضمان عدم الانقسام السطري على الجوالات الصغيرة */
         .account-number {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 700;
             color: #0f172a;
-            word-break: break-all;
-            text-align: left;
+            white-space: nowrap; /* يمنع انقسام الرقم لسطرين نهائياً */
+            overflow-x: auto; /* يسمح بالتمرير اللطيف لو كانت الشاشة متناهية الصغر */
             flex-grow: 1;
-            padding-right: 10px;
+            text-align: left;
         }
 
+        /* تحويل الزر إلى أيقونة دائرية ذكية للنسخ الفوري */
         .copy-btn {
             background: #0f172a;
             color: white;
             border: none;
-            padding: 8px 14px;
-            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 6px;
-            font-family: 'Tajawal', sans-serif;
             transition: all 0.2s;
             flex-shrink: 0;
+        }
+
+        .copy-btn i {
+            font-size: 15px;
         }
 
         .copy-btn:hover {
@@ -171,7 +184,7 @@
         }
 
         .footer {
-            margin-top: 30px;
+            margin-top: 25px;
             font-size: 11px;
             color: #94a3b8;
             border-top: 1px dashed #e2e8f0;
@@ -183,7 +196,10 @@
 
 <div class="container">
     <div class="header">
-        <div class="company-logo"><i class="fa-solid fa-briefcase"></i></div>
+        <!-- حاوية الشعار المحدثة لتقرأ الصورة المرفوعة -->
+        <div class="company-logo-box">
+            <img src="logo.png" alt="شعار شركة عالم الفائدة">
+        </div>
         <h1>شركة عالم الفائدة الحديثة للخردوات المحدودة</h1>
         <p>بيانات الحسابات البنكية (IBAN)</p>
     </div>
@@ -191,14 +207,14 @@
     <!-- البنك الأهلي السعودي -->
     <div class="bank-card snb">
         <div class="bank-info">
-            <div class="bank-logo-img" style="color: #005a36;"><i class="fa-solid fa-building-columns"></i></div>
+            <img class="bank-logo-img" src="https://wikimedia.org" alt="SNB Logo">
             <div class="bank-name">البنك الأهلي السعودي (SNB)</div>
         </div>
         <span class="account-label">رقم الحساب (الآيبان)</span>
         <div class="account-box">
             <span class="account-number" id="snb-iban">SA0410000012558115000209</span>
-            <button class="copy-btn" onclick="copyAccount('snb-iban', this)">
-                <i class="fa-regular fa-copy"></i> نسخ
+            <button class="copy-btn" onclick="copyAccount('snb-iban', this)" title="نسخ الآيبان">
+                <i class="fa-regular fa-copy"></i>
             </button>
         </div>
     </div>
@@ -206,14 +222,14 @@
     <!-- مصرف الراجحي -->
     <div class="bank-card alrajhi">
         <div class="bank-info">
-            <div class="bank-logo-img" style="color: #0054a6;"><i class="fa-solid fa-building-columns"></i></div>
+            <img class="bank-logo-img" src="https://wikimedia.org" alt="Alrajhi Logo">
             <div class="bank-name">مصرف الراجحي</div>
         </div>
         <span class="account-label">رقم الحساب (الآيبان)</span>
         <div class="account-box">
             <span class="account-number" id="rajhi-iban">SA4480000186608010222277</span>
-            <button class="copy-btn" onclick="copyAccount('rajhi-iban', this)">
-                <i class="fa-regular fa-copy"></i> نسخ
+            <button class="copy-btn" onclick="copyAccount('rajhi-iban', this)" title="نسخ الآيبان">
+                <i class="fa-regular fa-copy"></i>
             </button>
         </div>
     </div>
@@ -221,14 +237,14 @@
     <!-- بنك البلاد -->
     <div class="bank-card albilad">
         <div class="bank-info">
-            <div class="bank-logo-img" style="color: #b87b14;"><i class="fa-solid fa-building-columns"></i></div>
+            <img class="bank-logo-img" src="https://wikimedia.org" alt="Albilad Logo">
             <div class="bank-name">بنك البلاد</div>
         </div>
         <span class="account-label">رقم الحساب (الآيبان)</span>
         <div class="account-box">
             <span class="account-number" id="bilad-iban">SA5015000603102665110011</span>
-            <button class="copy-btn" onclick="copyAccount('bilad-iban', this)">
-                <i class="fa-regular fa-copy"></i> نسخ
+            <button class="copy-btn" onclick="copyAccount('bilad-iban', this)" title="نسخ الآيبان">
+                <i class="fa-regular fa-copy"></i>
             </button>
         </div>
     </div>
@@ -236,14 +252,14 @@
     <!-- بنك الرياض -->
     <div class="bank-card riyad">
         <div class="bank-info">
-            <div class="bank-logo-img" style="color: #007a87;"><i class="fa-solid fa-building-columns"></i></div>
+            <img class="bank-logo-img" src="https://wikimedia.org" alt="Riyad Logo">
             <div class="bank-name">بنك الرياض</div>
         </div>
         <span class="account-label">رقم الحساب (الآيبان)</span>
         <div class="account-box">
             <span class="account-number" id="riyad-iban">SA5720000001471374089940</span>
-            <button class="copy-btn" onclick="copyAccount('riyad-iban', this)">
-                <i class="fa-regular fa-copy"></i> نسخ
+            <button class="copy-btn" onclick="copyAccount('riyad-iban', this)" title="نسخ الآيبان">
+                <i class="fa-regular fa-copy"></i>
             </button>
         </div>
     </div>
@@ -258,12 +274,13 @@ function copyAccount(elementId, button) {
     const textToCopy = document.getElementById(elementId).innerText.trim();
     
     navigator.clipboard.writeText(textToCopy).then(() => {
-        const originalHTML = button.innerHTML;
-        button.innerHTML = '<i class="fa-solid fa-check"></i> تم!';
+        // تحويل الأيقونة لعلامة صح عند نجاح النسخ
+        button.innerHTML = '<i class="fa-solid fa-check"></i>';
         button.classList.add('copied');
         
         setTimeout(() => {
-            button.innerHTML = originalHTML;
+            // إعادة الأيقونة الأصلية بعد ثانية ونصف
+            button.innerHTML = '<i class="fa-regular fa-copy"></i>';
             button.classList.remove('copied');
         }, 1500);
     }).catch(err => {
